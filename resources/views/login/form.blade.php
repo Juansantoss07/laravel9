@@ -16,5 +16,7 @@
     <label for="password">Senha:</label>
     <input type="password" name="password" required id="">
 
+    <input type="checkbox" name="remember" id="">Lembrar-me
+
     <button type="submit">Entrar</button>
 </form>

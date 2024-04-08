@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use Illuminate\Support\Facades\Gate;
 
 class SiteController extends Controller
 {
@@ -22,6 +23,8 @@ class SiteController extends Controller
     public function details($slug)
     {
         $produto = Produto::where('slug', $slug)->first(); // O método first() traz somente um registro
+        
+        Gate::authorize('ver-produtos', $produto);
         return view('site.details', compact('produto'));
     }
 
