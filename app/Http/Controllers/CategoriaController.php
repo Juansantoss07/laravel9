@@ -74,7 +74,19 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        
+        $categoria = Categoria::find($request['id_categoria']);
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:255'
+        ]);
+
+        $categoria->nome = $request->nome;
+        $categoria->descricao = $request->descricao;
+
+        $categoria->save(); 
+        
+        return redirect(route('admin.categorias'))->with('sucesso', 'Categoria atualizada com sucesso');
     }
 
     /**

@@ -34,3 +34,4 @@ Route::get('/admin/categorias', [CategoriaController::class, 'index'])->name('ad
 Route::post('/admin/produtos/create', [ProdutoController::class, 'store'])->name('admin.produtos.store');
 Route::post('/admin/categorias/create', [CategoriaController::class, 'store'])->name('admin.categorias.store');
 Route::delete('/admin/categoria/delete/{id}', [CategoriaController::class, 'destroy'])->name('admin.categorias.delete');
+Route::put('/admin/categoria/update/{id}', [CategoriaController::class, 'update'])->name('admin.categorias.update');
