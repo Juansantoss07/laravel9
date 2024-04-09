@@ -37,7 +37,10 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = $request->all();
+        $categoria = Categoria::create($categoria);
+
+        return redirect(route('admin.categorias'))->with('sucesso', 'Categoria adicionada com sucesso!');
     }
 
     /**
@@ -80,8 +83,11 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy($id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+
+        return redirect(route('admin.categorias'))->with('sucesso', 'Categoria excluída com sucesso');
     }
 }

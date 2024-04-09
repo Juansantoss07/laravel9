@@ -1,6 +1,11 @@
 @extends('site.layout')
 @section('title', 'Categoria')
 @section('conteudo')
+<style>
+    .card:hover {
+    box-shadow: 0px 10px 50px #4888ff;
+    }
+</style>
 
     <div class="row container">
 

@@ -2,6 +2,16 @@
 
 @section('titulo', 'Categorias')
 @section('conteudo')
+
+@include('admin.categorias.create')
+
+
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large bg-gradient-green modal-trigger" href="#create">
+        <i class="large material-icons">add</i>
+    </a>
+</div>
+
 <div class="row container crud">
 
     @include('includes.mensagem')
@@ -43,10 +53,10 @@
                         <td><a class="btn-floating  waves-effect waves-light orange"><i
                                     class="material-icons">mode_edit</i></a>
 
-                            <a href="#!"
+                            <a href="#delete-{{ $categoria->id }}"
                                 class="btn-floating modal-trigger waves-effect waves-light red"><i
                                     class="material-icons">delete</i></a>
-                           
+                           @include('admin.categorias.delete')
                         </td>
                     </tr>
                 </tbody>
