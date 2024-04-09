@@ -8,7 +8,7 @@
             <div class="col s12 m3">
                 <div class="card">
                     <div class="card-image">
-                        <img src="{{ $produto->imagem }}">
+                        <img src="{{ url("storage/{$produto->imagem}") }}">
 
                         @can('ver-produtos', $produto)
                             <a href="{{ route('site.details', $produto->slug) }}"

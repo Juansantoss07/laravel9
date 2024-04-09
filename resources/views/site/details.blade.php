@@ -4,7 +4,7 @@
 
 <div class="row container"> <br>
     <div class="col s12 m6">
-        <img src="{{$produto->imagem}}" class="responsive-img">
+        <img src="{{ url("storage/{$produto->imagem}")}}" class="responsive-img">
     </div>
 
     <div class="col s12 m6">

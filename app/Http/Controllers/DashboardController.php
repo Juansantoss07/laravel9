@@ -14,11 +14,10 @@ class DashboardController extends Controller
     {
 
         $usuarios = User::all()->count();
-
         // gráfico 1 - usuários
         $usersData = User::select([
             DB::raw('YEAR(created_at) as ano'),
-            DB::raw('COUNT(*) as total')
+            DB::raw('COUNT(*) as total'),
         ])->groupBy('ano')->orderBy('ano', 'asc')->get();
 
         // preparar arrays
@@ -35,12 +34,12 @@ class DashboardController extends Controller
 
         // gráfico 2 - categorias
 
-        $catData = Categoria::all();
+        $catData = Categoria::with('produtos')->get();
 
         //preparar array
         foreach ($catData as $cat) {
             $catNome[] = "'.$cat->nome.'";
-            $catTotal[] = Produto::where('id_categoria', $cat->id)->count();
+            $catTotal[] = $cat->produtos->count();
         }
 
         //formatar para chartjs
