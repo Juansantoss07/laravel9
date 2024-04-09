@@ -25,7 +25,7 @@
                         <select name="id_categoria">
                             <option value="" disabled selected>Escolha uma opção</option>
                             @foreach ($categorias as $categoria)
-                                <option value="1">{{ $categoria->nome }}</option>
+                                <option value="{{$categoria->id}}">{{ $categoria->nome }}</option>
                             @endforeach
                         </select>
                         <label>Categorias</label>

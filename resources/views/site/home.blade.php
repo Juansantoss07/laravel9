@@ -6,13 +6,13 @@
 
         @foreach ($produtos as $produto)
             <div class="col s12 m3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="{{ url("storage/{$produto->imagem}") }}">
+                <div style="min-width:362px; min-height:495px; border-radius: 10px; background-color:#382961; color:#fff;" class="card">
+                    <div  class="card-image">
+                        <img style="width:500px; height:362px; margin: 0 auto;" src="{{ url("storage/{$produto->imagem}") }}">
 
                         @can('ver-produtos', $produto)
                             <a href="{{ route('site.details', $produto->slug) }}"
-                                class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                class="btn-floating halfway-fab waves-effect waves-light blue"><i
                                     class="material-icons">visibility</i></a>
                         @endcan
 

@@ -2,7 +2,7 @@
 @section('title', 'Carrinho')
 @section('conteudo')
 
-    <div class="row container">
+    <div class="row container" style="color: #fff;">
 
         @include('includes.mensagem')
 
@@ -31,19 +31,19 @@
                 <tbody>
                     @foreach ($itens as $item)
                         <tr>
-                            <td><img src="{{ $item->attributes->image }}" width="70" class="responsive-img circle"></td>
+                            <td><img src="{{url("storage/{$item->attributes->image}")}}" width="70" class="responsive-img circle"></td>
                             <td>{{ $item->name }}</td>
                             <td>R$ {{ number_format($item->price, 2, ',', '.') }}</td>
 
                             <form action="{{ route('site.atualizaCarrinho') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <td><input class="white center" style="width: 40px; font-weight:900;" type="number"
+                                <td><input class="center" style="width: 40px; font-weight:900; background:transparent; color:#fff;" type="number"
                                         min="1" name="quantity" value="{{ $item->quantity }}"></td>
 
 
                                 <td>
                                     <input type="hidden" name="id" value="{{ $item->id }}">
-                                    <button class="btn-floating waves-effect waves-light orange"><i
+                                    <button style="margin-bottom: .5rem" class="btn-floating waves-effect waves-light orange"><i
                                             class="material-icons">refresh</i></button>
                             </form>
 
@@ -60,7 +60,7 @@
                 </tbody>
             </table>
 
-            <div class="card orange">
+            <div class="card blue" style="border-radius: 50px">
                 <div class="card-content white-text">
                     <h5>Total: R$ {{ number_format(\Cart::getTotal(), 2, ',', '.') }}</h5>
                     <p>Compre em até 12x sem juros!</p>
