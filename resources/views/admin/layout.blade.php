@@ -42,9 +42,9 @@
                 <div class="background blue">
                     <img src="{{ asset('img/office.jpg') }}" style="opacity: 0.5">
                 </div>
-                <a href="#user"><img class="circle" src="{{ asset('img/user.jpg') }}"></a>
-                <a href="#name"><span class="white-text name">John Doe</span></a>
-                <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                <a href="#user"><img class="circle" src="{{ url("storage/".auth()->user()->imagem) }}"></a>
+                <a href="#name"><span class="white-text name">Olá, {{auth()->user()->firstName}}</span></a>
+                <a href="#email"><span class="white-text email">{{auth()->user()->email}}</span></a>
             </div>
         </li>
 
@@ -52,7 +52,7 @@
         <li><a href="{{route('admin.produtos')}}"><i class="material-icons">playlist_add_circle</i>Produtos</a></li>
         <li><a href="#!"><i class="material-icons">shopping_cart</i>Pedidos</a></li>
         <li><a href="{{route('admin.categorias')}}"><i class="material-icons">bookmarks</i>Categorias</a></li>
-        <li><a href="#!"><i class="material-icons">peoples</i>Usuários</a></li>
+        <li><a href="{{route('users.index')}}"><i class="material-icons">peoples</i>Usuários</a></li>
         <li><a href="{{route('site.index')}}"><i class="material-icons">menu</i>Index</a></li>
     </ul>
 

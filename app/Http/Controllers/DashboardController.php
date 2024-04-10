@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Produto;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -46,6 +48,11 @@ class DashboardController extends Controller
         $catLabel = implode(',', $catNome);
         $catTotal = implode(',', $catTotal);
 
+        try{
+            Gate::authorize('admin', $usuarios);
+        }catch(AuthorizationException $e){
+            return redirect(route('site.index'));
+        }
 
         return view('admin.dashboard', compact('usuarios', 'userLabel', 'userAno', 'userTotal', 'catLabel', 'catTotal'));
     }

@@ -3,21 +3,14 @@
 
 @section('conteudo')
 
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large bg-gradient-green modal-trigger" href="#create">
-            <i class="large material-icons">add</i>
-        </a>
-    </div>
-
-    @include('admin.produtos.create')
 
     <div class="row container crud">
 
         @include('includes.mensagem')
 
         <div class="row titulo ">
-            <h1 class="left">Produtos</h1>
-            <span class="right chip">{{ $produtos->count() }} produtos na página</span>
+            <h1 class="left">Usuários</h1>
+            <span class="right chip">{{ $usuarios->count() }} usuarios na página</span>
         </div>
 
         <nav class="bg-gradient-blue">
@@ -38,29 +31,31 @@
                     <tr>
                         <th></th>
                         <th>ID</th>
-                        <th>Produto</th>
-
-                        <th>Preço</th>
-                        <th>Categoria</th>
                         <th></th>
+                        <th>Primeiro nome</th>
+                        <th>Segundo nome</th>
+                        <th>Email</th>
+
                     </tr>
                 </thead>
 
-                @foreach ($produtos as $produto)
+                @foreach ($usuarios as $usuario)
                     <tbody>
                         <tr>
-                            <td><img src="{{ url("storage/{$produto->imagem}")}}" class="circle "></td>
-                            <td>#{{ $produto->id }}</td>
-                            <td>{{ $produto->nome }}</td>
-                            <td>R${{ number_format($produto->preco, 2, ',', '.') }}</td>
-                            <td>{{ $produto->categoria->nome }}</td>
-                            <td><a href="#edit-{{$produto->id}}" class="btn-floating modal-trigger waves-effect waves-light orange"><i
+                            <td><img src="{{ url("storage/{$usuario->imagem}") }}" class="circle "></td>
+                            <td>#{{ $usuario->id }}</td>
+                            <td></td>
+                            <td>{{ $usuario->firstName }}</td>
+                            <td>{{ $usuario->lastName }}</td>
+                            <td>{{ $usuario->email }}</td>
+                            <td><a href="#edit-{{ $usuario->id }}"
+                                    class="btn-floating modal-trigger waves-effect waves-light orange"><i
                                         class="material-icons">mode_edit</i></a>
-                                @include('admin.produtos.edit')
-                                <a href="#delete-{{ $produto->id }}"
+                                @include('admin.usuarios.edit')
+                                <a href="#delete-{{ $usuario->id }}"
                                     class="btn-floating modal-trigger waves-effect waves-light red"><i
                                         class="material-icons">delete</i></a>
-                                @include('admin.produtos.delete')
+                                @include('admin.usuarios.delete')
                             </td>
                         </tr>
                     </tbody>
@@ -68,6 +63,7 @@
             </table>
         </div>
     </div>
+
 
 
 @endsection

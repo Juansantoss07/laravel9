@@ -15,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = User::paginate(10);
+        return view('admin.usuarios', compact('usuarios'));
     }
 
     /**
@@ -37,7 +38,11 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = $request->all();
+
         $user['password'] = bcrypt($request->password);
+        if($request->hasFile('imagem')){
+            $user['imagem'] = $request->imagem->store('usuarios');
+        }
         $user = User::create($user);
 
         Auth::login($user);
@@ -76,7 +81,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usuario = User::find($id);
+        $usuario->firstName = $request->firstName;
+        $usuario->lastName = $request->lastName;
+        $usuario->email = $request->email;
+        if($request->hasFile('imagem')){
+            $usuario->imagem = $request->imagem->store('usuarios');
+        }
+       
+        $usuario->save();
+
+        return redirect(route('users.index'))->with('sucesso', 'Usuário atualizado com sucesso');
     }
 
     /**
@@ -87,6 +102,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usuario = User::find($id);
+        $usuario->delete();
+
+        return redirect(route('users.index'))->with('sucesso', 'Usuário removido com sucesso');
     }
 }

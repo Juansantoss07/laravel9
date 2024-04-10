@@ -16,7 +16,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $produtos = Produto::paginate(6); // O método paginate() traz todos os registros e define quantos serão exibidos por página.
+        $produtos = Produto::orderBy('nome', 'asc')->paginate(6); // O método paginate() traz todos os registros e define quantos serão exibidos por página.
         return view('site.home', compact('produtos'));
     }
 
@@ -24,7 +24,7 @@ class SiteController extends Controller
     {
         $produto = Produto::where('slug', $slug)->first(); // O método first() traz somente um registro
         
-        Gate::authorize('ver-produtos', $produto);
+        // Gate::authorize('ver-produtos', $produto);
         return view('site.details', compact('produto'));
     }
 
@@ -33,5 +33,10 @@ class SiteController extends Controller
         $categoria = Categoria::find($id);
         $produtos = Produto::where('id_categoria', $id)->paginate(3); // O método get() busca os registros com a condição, diferente do all() que busca todos os registros.Mas optamos por usar o paginate() que vai trazer os dados que queremos definindo o numero que queremos que exiba por página;.
         return view('site.categoria', compact('produtos', 'categoria'));
+    }
+
+    public function checkout()
+    {
+        return view('site.checkout');
     }
 }

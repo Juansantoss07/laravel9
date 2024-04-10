@@ -20,3 +20,5 @@
 
     <button type="submit">Entrar</button>
 </form>
+
+<a href="{{route('login.create')}}">Não tenho conta</a>

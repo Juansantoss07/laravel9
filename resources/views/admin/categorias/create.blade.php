@@ -1,4 +1,11 @@
-    <!-- Modal Structure -->
+<style>
+    .modal-content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    }
+</style>
+ <!-- Modal Structure -->
     <div id="create" class="modal">
         <div class="modal-content">
             <h4><i class="material-icons">card_giftcard</i>Nova categoria</h4>

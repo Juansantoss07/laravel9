@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+
 class ProdutoController extends Controller
 {
     /**
@@ -15,9 +16,9 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = Produto::paginate(5);
+        $produtos = Produto::all();
         $categorias = Categoria::all();
-        
+
         return view('admin.produtos', compact('produtos', 'categorias'));
     }
 
@@ -39,9 +40,9 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        $produto = $request->all(); 
-        
-        if($request->imagem){
+        $produto = $request->all();
+
+        if ($request->imagem) {
             $produto['imagem'] = $request->imagem->store('produtos');
         }
 
@@ -82,7 +83,19 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $produto = Produto::find($id);
+
+        $produto->nome = $request->nome;
+        $produto->descricao = $request->descricao;
+        $produto->preco = $request->preco;
+        if($request->hasFile('imagem')){
+            $produto->imagem = $request->imagem->store('produto');
+        }
+        $produto->id_categoria = $request->id_categoria;
+
+        $produto->save();
+
+        return redirect(route('admin.produtos'))->with('sucesso', 'Produto atualizado com sucesso');
     }
 
     /**

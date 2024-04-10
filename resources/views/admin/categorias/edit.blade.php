@@ -1,3 +1,10 @@
+<style>
+    .modal-content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    }
+</style>
 <!-- Modal Structure -->
 <div id="edit-{{$categoria->id}}" class="modal">
     <div class="modal-content">

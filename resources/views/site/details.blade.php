@@ -4,7 +4,7 @@
 
     <style>
         img.responsive-img {
-            box-shadow: 0px 10px 50px #4888ff;
+            box-shadow: 0px 0px 10px 5px #4888ff;
             border-radius: 10px;
         }
     </style>
@@ -15,7 +15,7 @@
 
         <div class="col s12 m6">
             <h4>{{ $produto->nome }}</h4>
-            <h4>R$ {{ number_format($produto->preco, 2, ',', '.') }}</h4>
+            <h4 style="color: greenyellow;">R$ {{ number_format($produto->preco, 2, ',', '.') }}</h4>
             <p>{{ $produto->descricao }}</p>
             <p>Postado por: {{ $produto->user->firstName }}</p>
             <p>Categoria: {{ $produto->categoria->nome }}</p>
@@ -27,7 +27,10 @@
                 <input type="hidden" name="price" value="{{ $produto->preco }}">
                 <input style="color: #fff; max-width:50px;" type="number" name="qnt" value="1" min="1">
                 <input type="hidden" name="image" value="{{ $produto->imagem }}">
-                <button style="border-radius: 20px" class="btn green btn-large">Comprar</button>
+
+                <div>
+                    <button style="border-radius: 6px; min-width:100%; margin-top:1rem;" class="btn green btn-large">Comprar</button>
+                </div>
             </form>
 
         </div>

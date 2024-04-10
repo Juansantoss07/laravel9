@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $categoriasMenu = Categoria::all();
-        view()->share('categoriasMenu', $categoriasMenu);
+        $categoriasMenu = Categoria::orderBy('nome', 'asc')->get();
+        view()->share('categoriasMenu', $categoriasMenu); 
     }
 }

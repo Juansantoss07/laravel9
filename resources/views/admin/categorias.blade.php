@@ -67,7 +67,5 @@
         </div>
     </div>
 
-    <div class="center">
-        @include('custom.paginationCategorias')
-    </div>
+
 @endsection

@@ -5,32 +5,33 @@
         justify-content: space-evenly;
     }
 </style>
-  <!-- Modal Structure -->
-    <div id="create" class="modal">
+   
+   <!-- Modal Structure -->
+    <div id="edit-{{$produto->id}}" class="modal">
         <div class="modal-content">
-            <h4><i class="material-icons">card_giftcard</i>Novo produto</h4>
-            <form action="{{route('admin.produtos.store')}}" method="POST" enctype="multipart/form-data" class="col s12">
-                @csrf
-
-                <input type="hidden" name="id_user" value="{{auth()->user()->id}}">
+            <h4><i class="material-icons">card_giftcard</i>Editar produto</h4>
+            <form action="{{route('admin.produtos.update', $produto->id)}}" method="post" enctype="multipart/form-data" class="col s12">
+                @method('PUT')
+                @csrf   
+                <input type="hidden" name="id" value="{{$produto->id}}">
 
                 <div class="row">
                     <div class="input-field col s6">
-                        <input name="nome" type="text" class="validate">
+                        <input name="nome" type="text" class="validate" value="{{$produto->nome}}">
                         <label for="nome">Nome</label>
                     </div>
                     <div class="input-field col s6">
-                        <input name="preco" type="number" class="validate">
+                        <input name="preco" type="number" class="validate" value="{{$produto->preco}}">
                         <label for="preco">Preço</label>
                     </div>
                     <div class="input-field col s12">
-                        <input name="descricao" type="text" class="validate">
+                        <input name="descricao" type="text" class="validate" value="{{$produto->descricao}}">
                         <label for="descricao">Descrição</label>
                     </div>
 
                     <div class="input-field col s12">
                         <select name="id_categoria">
-                            <option value="" disabled selected>Escolha uma opção</option>
+                            <option value="{{$produto->categoria->id}}" selected>{{$produto->categoria->nome}}</option>
                             @foreach ($categorias as $categoria)
                                 <option value="{{$categoria->id}}">{{ $categoria->nome }}</option>
                             @endforeach
@@ -40,16 +41,13 @@
 
                     <div class="file-field input-field col s12">
                         <div class="btn">
-                            <span>Imagem</span>
+                            <span>Nova Imagem</span>
                             <input name="imagem" type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="waves-effect waves-green btn blue right">Cadastrar</button><br>
+                <button type="submit" class="waves-effect waves-green btn blue right">Atualizar</button><br>
         </div>
 
         </form>

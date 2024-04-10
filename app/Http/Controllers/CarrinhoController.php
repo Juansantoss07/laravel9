@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class CarrinhoController extends Controller
@@ -48,6 +49,19 @@ class CarrinhoController extends Controller
     public function limpaCarrinho()
     {
         \Cart::clear();
-        return redirect()->route('site.carrinho')->with('aviso', 'Seu carrinho está vazio!');
+        return redirect()->route('site.carrinho');
+    }
+
+    public function finalizaCarrinho(Request $request, String $produtos, String $quantidades){
+
+        $produtosComprados = explode(",", $produtos);
+        $quantidades = explode(',',  $quantidades);
+        
+
+        if(!auth()->user()){
+            return redirect(route('login.index'));
+        }
+
+        return view('site.checkout', compact('produtosComprados', 'quantidades'));
     }
 }
