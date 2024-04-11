@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use MercadoPago\SDK;
 
 class CheckoutController extends Controller
 {
@@ -13,6 +14,8 @@ class CheckoutController extends Controller
         $quantidades = explode(',', $quantidades);
         
         $produtosComprados = Produto::find($produtosId);
+        
+        
         \Cart::clear();
         return redirect(route('site.index'))->with('sucesso', 'Compra realizada com sucesso');
     }

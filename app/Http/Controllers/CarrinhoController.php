@@ -57,11 +57,13 @@ class CarrinhoController extends Controller
         $produtosComprados = explode(",", $produtos);
         $quantidades = explode(',',  $quantidades);
         
+        $transactionId = uniqid('transaction_');
+
 
         if(!auth()->user()){
             return redirect(route('login.index'));
         }
 
-        return view('site.checkout', compact('produtosComprados', 'quantidades'));
+        return view('site.checkout', compact('produtosComprados', 'quantidades', 'transactionId'));
     }
 }

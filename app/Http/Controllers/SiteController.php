@@ -16,7 +16,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $produtos = Produto::orderBy('nome', 'asc')->paginate(6); // O método paginate() traz todos os registros e define quantos serão exibidos por página.
+        $produtos = Produto::orderBy('nome', 'asc')->get(); // O método paginate() traz todos os registros e define quantos serão exibidos por página.
         return view('site.home', compact('produtos'));
     }
 

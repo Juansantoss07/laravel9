@@ -42,7 +42,7 @@
     </ul>
     <nav style="background-color:#382961; margin-bottom:1rem;">
         <div class="nav-wrapper">
-            <a style="font-family: cursive" href="{{route('site.index')}}" class="brand-logo center"><i style="color: #4888ff" class="material-icons">data_usage</i>Commerce Laravels<i style="color: #4888ff" class="material-icons right">data_usage</i></a>
+            <a style="font-family: cursive" href="{{route('site.index')}}" class="brand-logo center">Commerce Laravels<i style="color: #4888ff" class="material-icons right">data_usage</i></a>
 
             <ul id="nav-mobile" class="left">
                 <li><a href="{{ route('site.index') }}">Home</a></li>

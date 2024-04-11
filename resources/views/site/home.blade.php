@@ -17,7 +17,7 @@
         @include('includes.mensagem')
         @foreach ($produtos as $produto)
             <div class="col s12 m4">
-                <div style=" border-radius: 10px; background-color:#382961; color:#fff;"
+                <div style=" border-radius: 5px; background-color:#382961; color:#fff;"
                     class="card">
                     <div class="card-image">
                         <img class="responsive-img" style="width:auto; max-height:300px; margin: 0 auto;" src="{{ url("storage/{$produto->imagem}") }}">
